@@ -1,0 +1,97 @@
+.main {
+  width: 100%;
+  box-sizing: border-box;
+  padding-top: 100px;
+}
+
+.main__hero {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 40px 104px;
+  gap: 40px;
+}
+
+.main__text-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.main__subtitle {
+  font-family: "Roboto Slab", serif;
+  font-size: 42px;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.main__description {
+  font-size: 20px;
+  color: #555;
+  margin: 0;
+}
+
+.main__treatments-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.main__treatment-item {
+  font-size: 18px;
+  color: #333;
+  padding-left: 24px;
+  position: relative;
+}
+
+.main__treatment-item::before {
+  content: "•";
+  color: #2c3e50;
+  font-size: 24px;
+  position: absolute;
+  left: 0;
+  top: -4px;
+}
+
+.main__image-container {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.main__image {
+  max-width: 100%;
+  height: auto;
+  max-height: 450px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+}
+
+@media screen and (max-width: 768px) {
+  .main__hero {
+    flex-direction: column;
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .main__image-container {
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .main__treatment-item {
+    padding-left: 0;
+  }
+
+  .main__treatment-item::before {
+    display: none;
+  }
+}
