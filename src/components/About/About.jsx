@@ -2,6 +2,14 @@ import "./About.css";
 import aboutImage from "../../images/Doctores.png";
 import { Link } from "react-router-dom";
 
+const doctorsData = [
+  { id: "saul-alaniz", name: "Doctor Saul Enrique Alaniz Garcia" },
+  { id: "javier-alaniz", name: "Doctor Javier Alaniz Garcia" },
+  { id: "ariadna-alaniz", name: "Doctora Ariadna Elizabeth Alaniz Paredes" },
+  { id: "isaura-alaniz", name: "Doctora Isaura Alaniz" },
+  { id: "selene-alaniz", name: "Doctora Selene Sarai Alaniz Paredes" },
+];
+
 function About() {
   return (
     <section className="about">
@@ -13,16 +21,20 @@ function About() {
           nuestros pacientes.
         </p>
         <ul className="about__list">
-          <li className="about__item">Doctor Saul Enrique Alaniz Garcia</li>
-          <li className="about__item">Doctor Javier Alaniz Garcia</li>
-          <li className="about__item">
-            Doctora Ariadna Elizabeth Alaniz Paredes
-          </li>
-          <li className="about__item">Doctora Isaura Alaniz</li>
-          <li className="about__item">Doctora Selene Sarai Alaniz Paredes</li>
+          {doctorsData.map((doctor) => (
+            <li key={doctor.id} className="about__item">
+              <Link to={`/doctor/${doctor.id}`} className="about__link">
+                {doctor.name}
+              </Link>
+            </li>
+          ))}
         </ul>
       </div>
-      <img className="about__image" src={aboutImage} alt="Author" />
+      <img
+        className="about__image"
+        src={aboutImage}
+        alt="Equipo Dental Alaniz"
+      />
     </section>
   );
 }

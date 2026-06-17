@@ -1,0 +1,70 @@
+.doctor-profile {
+  padding: 100px 104px;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: auto;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.doctor-profile__content {
+  display: flex;
+  align-items: flex-start;
+  gap: 60px;
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.doctor-profile__image {
+  width: 350px;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.doctor-profile__info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.doctor-profile__info h2 {
+  font-family: "Roboto Slab", serif;
+  font-size: 40px;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.doctor-profile__info h3 {
+  font-size: 24px;
+  color: #555;
+  font-weight: 500;
+  margin: 0;
+}
+
+.doctor-profile__info p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #333;
+}
+
+@media screen and (max-width: 768px) {
+  .doctor-profile {
+    padding: 40px 20px;
+  }
+
+  .doctor-profile__content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .doctor-profile__image {
+    width: 250px;
+    height: 250px;
+  }
+}
