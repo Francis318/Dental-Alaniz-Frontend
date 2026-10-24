@@ -52,6 +52,23 @@
   color: #333;
 }
 
+.doctor-profile__details {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+}
+
+.doctor-profile__details-item {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.doctor-profile__details-item--spaced {
+  margin-top: 10px;
+}
+
 @media screen and (max-width: 768px) {
   .doctor-profile {
     padding: 40px 20px;
