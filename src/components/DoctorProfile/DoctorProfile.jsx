@@ -1,68 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./DoctorProfile.css";
-import EnriqueImage from "../../images/Enrique.png";
-import JavierImage from "../../images/Javier.png";
-import AriadnaImage from "../../images/Ariadna.png";
-import IsauraImage from "../../images/Isaura.png";
-import SeleneImage from "../../images/Selene.png";
-
-const doctorsDatabase = [
-  {
-    id: "saul-alaniz",
-    name: "Dr. Saúl Enrique Alaniz García",
-    specialty: "Odontología General",
-    description:
-      "Con más de 30 años de experiencia cuidando sonrisas. Especialista en diagnósticos integrales, rehabilitación oral y prevención. Su enfoque principal es brindar confianza, un trato humano y cero dolor en cada procedimiento.",
-    education: "Universidad Nacional Autónoma de México (UNAM)",
-    schedule: "Lunes a Viernes: 9:00 AM - 2:00 PM",
-    image: EnriqueImage,
-  },
-  {
-    id: "javier-alaniz",
-    name: "Dr. Javier Alaniz García",
-    specialty: "Odontología General",
-    description:
-      "Especialista en restauraciones estéticas y alineación dental. Dedicado a devolver la funcionalidad y confianza a sus pacientes mediante tratamientos vanguardistas y materiales de última generación.",
-    education: "Universidad Autónoma del Estado de México (UAEMex)",
-    schedule: "Lunes a Viernes: 4:00 PM - 8:00 PM",
-    image: JavierImage,
-  },
-  {
-    id: "ariadna-alaniz",
-    name: "Dra. Ariadna Elizabeth Alaniz Paredes",
-    specialty: "Ortodoncia",
-    description:
-      "Transformando sonrisas con precisión y cuidado. Experta en brackets tradicionales, estéticos y alineadores invisibles. Su objetivo es lograr la armonía facial y una mordida perfecta para cada paciente.",
-    education: "Especialidad en Ortodoncia y Ortopedia Maxilofacial",
-    schedule: "Martes, Jueves y Sábados: 10:00 AM - 6:00 PM",
-    image: AriadnaImage,
-  },
-  {
-    id: "isaura-alaniz",
-    name: "Dra. Isaura Alaniz",
-    specialty: "Endodoncia",
-    description:
-      "Salvando dientes con experiencia y dedicación. Especialista en tratamientos de conducto indoloros y microcirugía endodóntica. Su prioridad es preservar tus piezas dentales naturales siempre que sea posible.",
-    education: "Diplomado Avanzado en Endodoncia Microscópica",
-    schedule: "Lunes y Miércoles: 10:00 AM - 7:00 PM",
-    image: IsauraImage,
-  },
-  {
-    id: "selene-alaniz",
-    name: "Dra. Selene Sarai Alaniz Paredes",
-    specialty: "Odontopediatría",
-    description:
-      "Cuidando las sonrisas más pequeñas con ternura y profesionalismo. Capacitada para el manejo de conducta infantil, logrando que la visita al dentista sea una experiencia divertida y libre de miedo para los niños.",
-    education: "Especialidad en Odontología Infantil",
-    schedule: "Viernes: 2:00 PM - 8:00 PM | Sábados: 9:00 AM - 2:00 PM",
-    image: SeleneImage,
-  },
-];
 
 function DoctorProfile() {
   const { id } = useParams();
-  const doctor = doctorsDatabase.find((doc) => doc.id === id);
+  const [doctor, setDoctor] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("http://localhost:3001/doctors")
+      .then((res) => {
+        if (!res.ok) throw new Error("Error en la respuesta del servidor");
+        return res.json();
+      })
+      .then((data) => {
+        const foundDoctor = data.find((doc) => doc._id === id);
+        setDoctor(foundDoctor);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error al cargar los datos:", err);
+        setLoading(false);
+      });
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div className="doctor-profile">
+        <h2>Cargando perfil... ⏳</h2>
+      </div>
+    );
+  }
 
   if (!doctor) {
     return (

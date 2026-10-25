@@ -5,7 +5,7 @@ import logoutIcon from "../../images/logout.png";
 import menuIcon from "../../images/menu.png";
 import closeIcon from "../../images/close-icon.png";
 
-function Navigation({ isLoggedIn, currentUser, onLoginClick, onLogOut }) {
+function Navigation({ isLoggedIn, currentUser, onLogOut }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -32,31 +32,39 @@ function Navigation({ isLoggedIn, currentUser, onLoginClick, onLogOut }) {
         >
           Inicio
         </NavLink>
+
         {isLoggedIn && (
           <>
+            <span className="header__link header__user-name">
+              {currentUser.name}
+            </span>
+
             <button
-              className={`header__button header__button_user`}
+              className={`header__button header__button_logout`}
               onClick={() => {
                 setIsMenuOpen(false);
                 onLogOut();
               }}
             >
-              {currentUser.name}
+              Salir
               <img
                 src={logoutIcon}
                 alt="Logout"
                 className="header__logout-icon"
+                style={{ marginLeft: "8px" }}
               />
             </button>
           </>
         )}
+
         {!isLoggedIn && (
-          <button
+          <NavLink
+            to="/login"
             className={`header__button header__button_login`}
-            onClick={onLoginClick}
+            onClick={() => setIsMenuOpen(false)}
           >
             Iniciar sesión
-          </button>
+          </NavLink>
         )}
       </nav>
     </>
