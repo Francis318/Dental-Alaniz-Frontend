@@ -17,13 +17,13 @@ function App() {
     const token = localStorage.getItem("jwt");
     if (token) {
       setIsLoggedIn(true);
-      setCurrentUser({ name: "Admin" });
+      setCurrentUser({ name: "Admin Enrique" });
     }
   }, []);
 
   const handleLogin = () => {
     setIsLoggedIn(true);
-    setCurrentUser({ name: "Admin Kike" });
+    setCurrentUser({ name: "Admin Enrique" });
   };
 
   const handleLogOut = () => {
